@@ -165,8 +165,8 @@ function unbracketTag(str) {
  *   'Thunderstruck' => 'THUNDERSTRUCK'
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
-function convertToUpperCase(/* str */) {
-  throw new Error('Not implemented');
+function convertToUpperCase(str) {
+  return str.toUpperCase();
 }
 
 /**
@@ -184,8 +184,8 @@ function convertToUpperCase(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -211,8 +211,37 @@ function extractEmails(/* str */) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const figureWidth = width - 2;
+  const figureHeight = height - 2;
+
+  function spaces(str) {
+    let resStr = '';
+    for (let i = 0; i < figureWidth; i += 1) {
+      resStr += str;
+    }
+    return resStr;
+  }
+
+  function middleColumns(col) {
+    let column = '';
+    for (let i = 0; i < figureHeight; i += 1) {
+      column += col;
+    }
+    return column;
+  }
+
+  const top = ['┌', '┐'];
+  const bottom = ['└', '┘'];
+  const n = '\n';
+  const middle = '│';
+  const line = '─';
+
+  const colTop = top[0] + spaces(line) + top[1] + n;
+  const colMiddle = middle + spaces(' ') + middle + n;
+  const colBottom = bottom[0] + spaces(line) + bottom[1] + n;
+  const figure = colTop + middleColumns(colMiddle) + colBottom;
+  return figure;
 }
 
 
